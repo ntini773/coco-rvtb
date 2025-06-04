@@ -1,6 +1,0 @@
-[submodule "ibex"]
-	path = ibex
-	url = https://github.com/ntini773/ibex.git
-[submodule "riscv-isa-sim"]
-	path = riscv-isa-sim
-	url = https://github.com/ntini773/riscv-isa-sim.git
