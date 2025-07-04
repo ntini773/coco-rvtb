@@ -1,0 +1,6 @@
+<testsuites name="results">
+  <testsuite name="all" package="all">
+    <property name="random_seed" value="1749234194" />
+    <testcase name="basic_run_test" classname="test_ibex_simple_system" file="/home/nitin/coco-rvtb/sim/test_ibex_simple_system.py" lineno="5" time="0.0069081783294677734" sim_time_ns="1090.001" ratio_time="157784.1433754616" />
+  </testsuite>
+</testsuites>

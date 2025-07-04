@@ -1,0 +1,245 @@
+// Verilated -*- C++ -*-
+// DESCRIPTION: Verilator output: Symbol table internal header
+//
+// Internal details; most calling programs do not need this header,
+// unless using verilator public meta comments.
+
+#ifndef VERILATED_VTOP__SYMS_H_
+#define VERILATED_VTOP__SYMS_H_  // guard
+
+#include "verilated.h"
+
+// INCLUDE MODEL CLASS
+
+#include "Vtop.h"
+
+// INCLUDE MODULE CLASSES
+#include "Vtop___024root.h"
+#include "Vtop_prim_cipher_pkg.h"
+#include "Vtop_prim_secded_pkg.h"
+#include "Vtop_ibex_tracer_pkg.h"
+#include "Vtop_prim_mubi_pkg.h"
+#include "Vtop_prim_ram_2p_pkg.h"
+#include "Vtop_prim_ram_1p_pkg.h"
+#include "Vtop_ibex_pkg.h"
+
+// DPI TYPES for DPI Export callbacks (Internal use)
+using Vtop__Vcb_mhpmcounter_get_t = void (*) (Vtop__Syms* __restrict vlSymsp, IData/*31:0*/ index, QData/*63:0*/ &mhpmcounter_get__Vfuncrtn);
+using Vtop__Vcb_mhpmcounter_num_t = void (*) (Vtop__Syms* __restrict vlSymsp, IData/*31:0*/ &mhpmcounter_num__Vfuncrtn);
+using Vtop__Vcb_simutil_get_mem_t = void (*) (Vtop__Syms* __restrict vlSymsp, IData/*31:0*/ index, VlWide<10>/*311:0*/ &val, IData/*31:0*/ &simutil_get_mem__Vfuncrtn);
+using Vtop__Vcb_simutil_get_scramble_key_t = void (*) (Vtop__Syms* __restrict vlSymsp, VlWide<4>/*127:0*/ &val, IData/*31:0*/ &simutil_get_scramble_key__Vfuncrtn);
+using Vtop__Vcb_simutil_get_scramble_nonce_t = void (*) (Vtop__Syms* __restrict vlSymsp, VlWide<10>/*319:0*/ &nonce, IData/*31:0*/ &simutil_get_scramble_nonce__Vfuncrtn);
+using Vtop__Vcb_simutil_memload_t = void (*) (Vtop__Syms* __restrict vlSymsp, std::string file);
+using Vtop__Vcb_simutil_set_mem_t = void (*) (Vtop__Syms* __restrict vlSymsp, IData/*31:0*/ index, VlWide<10>/*311:0*/ val, IData/*31:0*/ &simutil_set_mem__Vfuncrtn);
+
+// SYMS CLASS (contains all model state)
+class alignas(VL_CACHE_LINE_BYTES)Vtop__Syms final : public VerilatedSyms {
+  public:
+    // INTERNAL STATE
+    Vtop* const __Vm_modelp;
+    bool __Vm_activity = false;  ///< Used by trace routines to determine change occurred
+    uint32_t __Vm_baseCode = 0;  ///< Used by trace routines when tracing multiple models
+    VlDeleter __Vm_deleter;
+    bool __Vm_didInit = false;
+
+    // MODULE INSTANCE STATE
+    Vtop___024root                 TOP;
+    Vtop_ibex_pkg                  TOP__ibex_pkg;
+    Vtop_ibex_tracer_pkg           TOP__ibex_tracer_pkg;
+    Vtop_prim_cipher_pkg           TOP__prim_cipher_pkg;
+    Vtop_prim_mubi_pkg             TOP__prim_mubi_pkg;
+    Vtop_prim_ram_1p_pkg           TOP__prim_ram_1p_pkg;
+    Vtop_prim_ram_2p_pkg           TOP__prim_ram_2p_pkg;
+    Vtop_prim_secded_pkg           TOP__prim_secded_pkg;
+
+    // SCOPE NAMES
+    VerilatedScope __Vscope_TOP;
+    VerilatedScope __Vscope_ibex_pkg;
+    VerilatedScope __Vscope_ibex_simple_system;
+    VerilatedScope __Vscope_ibex_simple_system__u_bus;
+    VerilatedScope __Vscope_ibex_simple_system__u_bus__unnamedblk1;
+    VerilatedScope __Vscope_ibex_simple_system__u_bus__unnamedblk2;
+    VerilatedScope __Vscope_ibex_simple_system__u_bus__unnamedblk3;
+    VerilatedScope __Vscope_ibex_simple_system__u_bus__unnamedblk4;
+    VerilatedScope __Vscope_ibex_simple_system__u_ram;
+    VerilatedScope __Vscope_ibex_simple_system__u_ram__u_ram;
+    VerilatedScope __Vscope_ibex_simple_system__u_ram__u_ram__gen_generic;
+    VerilatedScope __Vscope_ibex_simple_system__u_ram__u_ram__gen_generic__u_impl_generic;
+    VerilatedScope __Vscope_ibex_simple_system__u_ram__u_ram__gen_generic__u_impl_generic__unnamedblk1;
+    VerilatedScope __Vscope_ibex_simple_system__u_ram__u_ram__gen_generic__u_impl_generic__unnamedblk2;
+    VerilatedScope __Vscope_ibex_simple_system__u_ram__u_ram__gen_generic__u_impl_generic__unnamedblk3;
+    VerilatedScope __Vscope_ibex_simple_system__u_ram__u_ram__gen_generic__u_impl_generic__unnamedblk3__gen_meminit;
+    VerilatedScope __Vscope_ibex_simple_system__u_ram__unnamedblk1;
+    VerilatedScope __Vscope_ibex_simple_system__u_simulator_ctrl;
+    VerilatedScope __Vscope_ibex_simple_system__u_timer;
+    VerilatedScope __Vscope_ibex_simple_system__u_top;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__core_clock_gate_i;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__g_clock_en_non_secure;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__gen_no_lockstep;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__gen_non_mem_rdata_ecc;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__gen_norams;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__gen_noscramble;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__gen_regfile_ff;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__gen_regfile_ff__register_file_i;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__gen_regfile_ff__register_file_i__g_normal_r0;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__gen_regfile_ff__register_file_i__g_rf_flops__BRA__10__KET__;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__gen_regfile_ff__register_file_i__g_rf_flops__BRA__11__KET__;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__gen_regfile_ff__register_file_i__g_rf_flops__BRA__12__KET__;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__gen_regfile_ff__register_file_i__g_rf_flops__BRA__13__KET__;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__gen_regfile_ff__register_file_i__g_rf_flops__BRA__14__KET__;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__gen_regfile_ff__register_file_i__g_rf_flops__BRA__15__KET__;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__gen_regfile_ff__register_file_i__g_rf_flops__BRA__16__KET__;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__gen_regfile_ff__register_file_i__g_rf_flops__BRA__17__KET__;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__gen_regfile_ff__register_file_i__g_rf_flops__BRA__18__KET__;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__gen_regfile_ff__register_file_i__g_rf_flops__BRA__19__KET__;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__gen_regfile_ff__register_file_i__g_rf_flops__BRA__1__KET__;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__gen_regfile_ff__register_file_i__g_rf_flops__BRA__20__KET__;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__gen_regfile_ff__register_file_i__g_rf_flops__BRA__21__KET__;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__gen_regfile_ff__register_file_i__g_rf_flops__BRA__22__KET__;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__gen_regfile_ff__register_file_i__g_rf_flops__BRA__23__KET__;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__gen_regfile_ff__register_file_i__g_rf_flops__BRA__24__KET__;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__gen_regfile_ff__register_file_i__g_rf_flops__BRA__25__KET__;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__gen_regfile_ff__register_file_i__g_rf_flops__BRA__26__KET__;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__gen_regfile_ff__register_file_i__g_rf_flops__BRA__27__KET__;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__gen_regfile_ff__register_file_i__g_rf_flops__BRA__28__KET__;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__gen_regfile_ff__register_file_i__g_rf_flops__BRA__29__KET__;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__gen_regfile_ff__register_file_i__g_rf_flops__BRA__2__KET__;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__gen_regfile_ff__register_file_i__g_rf_flops__BRA__30__KET__;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__gen_regfile_ff__register_file_i__g_rf_flops__BRA__31__KET__;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__gen_regfile_ff__register_file_i__g_rf_flops__BRA__3__KET__;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__gen_regfile_ff__register_file_i__g_rf_flops__BRA__4__KET__;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__gen_regfile_ff__register_file_i__g_rf_flops__BRA__5__KET__;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__gen_regfile_ff__register_file_i__g_rf_flops__BRA__6__KET__;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__gen_regfile_ff__register_file_i__g_rf_flops__BRA__7__KET__;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__gen_regfile_ff__register_file_i__g_rf_flops__BRA__8__KET__;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__gen_regfile_ff__register_file_i__g_rf_flops__BRA__9__KET__;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__gen_regfile_ff__register_file_i__gen_no_wren_check;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__gen_regfile_ff__register_file_i__we_a_decoder;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__gen_regfile_ff__register_file_i__we_a_decoder__unnamedblk1;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__u_fetch_enable_buf;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__u_fetch_enable_buf__gen_generic;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__u_fetch_enable_buf__gen_generic__u_impl_generic;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__u_ibex_core;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__u_ibex_core__cs_registers_i;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__u_ibex_core__cs_registers_i__g_mcountinhibit_reduced;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__u_ibex_core__cs_registers_i__gen_cntrs__BRA__0__KET__;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__u_ibex_core__cs_registers_i__gen_cntrs__BRA__10__KET__;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__u_ibex_core__cs_registers_i__gen_cntrs__BRA__11__KET__;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__u_ibex_core__cs_registers_i__gen_cntrs__BRA__12__KET__;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__u_ibex_core__cs_registers_i__gen_cntrs__BRA__13__KET__;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__u_ibex_core__cs_registers_i__gen_cntrs__BRA__14__KET__;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__u_ibex_core__cs_registers_i__gen_cntrs__BRA__15__KET__;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__u_ibex_core__cs_registers_i__gen_cntrs__BRA__16__KET__;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__u_ibex_core__cs_registers_i__gen_cntrs__BRA__17__KET__;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__u_ibex_core__cs_registers_i__gen_cntrs__BRA__18__KET__;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__u_ibex_core__cs_registers_i__gen_cntrs__BRA__19__KET__;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__u_ibex_core__cs_registers_i__gen_cntrs__BRA__1__KET__;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__u_ibex_core__cs_registers_i__gen_cntrs__BRA__20__KET__;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__u_ibex_core__cs_registers_i__gen_cntrs__BRA__21__KET__;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__u_ibex_core__cs_registers_i__gen_cntrs__BRA__22__KET__;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__u_ibex_core__cs_registers_i__gen_cntrs__BRA__23__KET__;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__u_ibex_core__cs_registers_i__gen_cntrs__BRA__24__KET__;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__u_ibex_core__cs_registers_i__gen_cntrs__BRA__25__KET__;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__u_ibex_core__cs_registers_i__gen_cntrs__BRA__26__KET__;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__u_ibex_core__cs_registers_i__gen_cntrs__BRA__27__KET__;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__u_ibex_core__cs_registers_i__gen_cntrs__BRA__28__KET__;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__u_ibex_core__cs_registers_i__gen_cntrs__BRA__2__KET__;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__u_ibex_core__cs_registers_i__gen_cntrs__BRA__3__KET__;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__u_ibex_core__cs_registers_i__gen_cntrs__BRA__4__KET__;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__u_ibex_core__cs_registers_i__gen_cntrs__BRA__5__KET__;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__u_ibex_core__cs_registers_i__gen_cntrs__BRA__6__KET__;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__u_ibex_core__cs_registers_i__gen_cntrs__BRA__7__KET__;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__u_ibex_core__cs_registers_i__gen_cntrs__BRA__7__KET____gen_unimp;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__u_ibex_core__cs_registers_i__gen_cntrs__BRA__7__KET____gen_unimp__gen_no_compressed_instr_cnt;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__u_ibex_core__cs_registers_i__gen_cntrs__BRA__8__KET__;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__u_ibex_core__cs_registers_i__gen_cntrs__BRA__9__KET__;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__u_ibex_core__cs_registers_i__gen_mhpmcounter_incr;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__u_ibex_core__cs_registers_i__gen_mhpmcounter_incr__unnamedblk1;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__u_ibex_core__cs_registers_i__gen_mhpmevent;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__u_ibex_core__cs_registers_i__gen_mhpmevent__unnamedblk2;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__u_ibex_core__cs_registers_i__gen_mhpmevent__unnamedblk3;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__u_ibex_core__cs_registers_i__gen_no_dit;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__u_ibex_core__cs_registers_i__gen_no_dummy;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__u_ibex_core__cs_registers_i__gen_no_icache;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__u_ibex_core__cs_registers_i__mcycle_counter_i;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__u_ibex_core__cs_registers_i__minstret_counter_i;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__u_ibex_core__cs_registers_i__u_cpuctrlsts_part_csr;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__u_ibex_core__cs_registers_i__u_dcsr_csr;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__u_ibex_core__cs_registers_i__u_depc_csr;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__u_ibex_core__cs_registers_i__u_dscratch0_csr;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__u_ibex_core__cs_registers_i__u_dscratch1_csr;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__u_ibex_core__cs_registers_i__u_mcause_csr;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__u_ibex_core__cs_registers_i__u_mepc_csr;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__u_ibex_core__cs_registers_i__u_mie_csr;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__u_ibex_core__cs_registers_i__u_mscratch_csr;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__u_ibex_core__cs_registers_i__u_mstack_cause_csr;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__u_ibex_core__cs_registers_i__u_mstack_csr;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__u_ibex_core__cs_registers_i__u_mstack_epc_csr;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__u_ibex_core__cs_registers_i__u_mstatus_csr;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__u_ibex_core__cs_registers_i__u_mtval_csr;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__u_ibex_core__cs_registers_i__u_mtvec_csr;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__u_ibex_core__ex_block_i;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__u_ibex_core__ex_block_i__alu_i;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__u_ibex_core__ex_block_i__alu_i__g_no_alu_rvb;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__u_ibex_core__ex_block_i__alu_i__unnamedblk1;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__u_ibex_core__ex_block_i__g_no_branch_target_alu;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__u_ibex_core__ex_block_i__gen_multdiv_fast;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__u_ibex_core__ex_block_i__gen_multdiv_fast__multdiv_i;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__u_ibex_core__ex_block_i__gen_multdiv_fast__multdiv_i__gen_mult_fast;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__u_ibex_core__g_instr_req_gated_non_secure;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__u_ibex_core__g_no_check_mem_response;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__u_ibex_core__g_no_pmp;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__u_ibex_core__g_rvfi_stages__BRA__0__KET__;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__u_ibex_core__g_rvfi_stages__BRA__0__KET____unnamedblk1;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__u_ibex_core__gen_no_regfile_ecc;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__u_ibex_core__id_stage_i;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__u_ibex_core__id_stage_i__controller_i;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__u_ibex_core__id_stage_i__controller_i__g_no_intg_irq_int;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__u_ibex_core__id_stage_i__controller_i__gen_mfip_id;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__u_ibex_core__id_stage_i__controller_i__gen_mfip_id__unnamedblk1;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__u_ibex_core__id_stage_i__decoder_i;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__u_ibex_core__id_stage_i__decoder_i__gen_no_rs3_flop;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__u_ibex_core__id_stage_i__g_branch_set_flop;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__u_ibex_core__id_stage_i__g_nobtalu;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__u_ibex_core__id_stage_i__gen_no_stall_mem;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__u_ibex_core__id_stage_i__rf_wdata_id_mux;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__u_ibex_core__if_stage_i;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__u_ibex_core__if_stage_i__compressed_decoder_i;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__u_ibex_core__if_stage_i__gen_no_dummy_instr;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__u_ibex_core__if_stage_i__gen_prefetch_buffer;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__u_ibex_core__if_stage_i__gen_prefetch_buffer__prefetch_buffer_i;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__u_ibex_core__if_stage_i__gen_prefetch_buffer__prefetch_buffer_i__fifo_i;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__u_ibex_core__load_store_unit_i;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__u_ibex_core__wb_stage_i;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__u_ibex_core__wb_stage_i__g_bypass_wb;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__u_rf_rdata_a_ecc_buf;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__u_rf_rdata_a_ecc_buf__gen_generic;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__u_rf_rdata_a_ecc_buf__gen_generic__u_impl_generic;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__u_rf_rdata_b_ecc_buf;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__u_rf_rdata_b_ecc_buf__gen_generic;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_top__u_rf_rdata_b_ecc_buf__gen_generic__u_impl_generic;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_tracer;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_tracer__decode_store_insn;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_tracer__unnamedblk1;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_tracer__unnamedblk2;
+    VerilatedScope __Vscope_ibex_simple_system__u_top__u_ibex_tracer__unnamedblk2__unnamedblk3;
+    VerilatedScope __Vscope_ibex_tracer_pkg;
+    VerilatedScope __Vscope_prim_cipher_pkg;
+    VerilatedScope __Vscope_prim_mubi_pkg;
+    VerilatedScope __Vscope_prim_ram_1p_pkg;
+    VerilatedScope __Vscope_prim_ram_2p_pkg;
+    VerilatedScope __Vscope_prim_secded_pkg;
+
+    // SCOPE HIERARCHY
+    VerilatedHierarchy __Vhier;
+
+    // CONSTRUCTORS
+    Vtop__Syms(VerilatedContext* contextp, const char* namep, Vtop* modelp);
+    ~Vtop__Syms();
+
+    // METHODS
+    const char* name() { return TOP.name(); }
+};
+
+#endif  // guard

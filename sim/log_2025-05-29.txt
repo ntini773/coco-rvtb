@@ -1,0 +1,62 @@
+
+ 1923  cocotb --version
+ 1924  clear
+ 1925  cd ..
+ 1926  git clone https://github.com/cocotb/cocotb
+ 1927  cd cocotb/examples/doc_examples/
+ 1928  make
+ 1929  ls
+ 1930  cd quickstart/
+ 1931  make
+ 1932  pip install cocotb[bus]
+ 1933  `cd ..
+ 1934  cd ..
+ 1935  cd sim
+ 1936  make
+ 1937  cd ..
+ 1938  cd ibex
+ 1939  cd vendor/lowrisc_ip/ip/prim/rtl/
+ 1940  ls
+ 1941  clear
+ 1942  cd ~/cocotb_simulation/
+ 1943  cd sim
+ 1944  make
+ 1945  clear
+ 1946  make
+ 1947  clear
+ 1948  cd '/home/nitin/cocotb_simulation/cocotb/examples/adder/tests'
+ 1949  make
+ 1950  pip install pytest
+ 1951  make
+ 1952  cocotb --version
+ 1953  cocotb-config --version
+ 1954  make
+ 1955  /home/nitin/cocotb_simulation/.venv/bin/python /home/nitin/cocotb_simulation/cocotb/examples/adder/tests/test_adder.py
+ 1956  /bin/python3 /home/nitin/.vscode/extensions/ms-python.python-2025.6.1-linux-x64/python_files/printEnvVariablesToFile.py /home/nitin/.vscode/extensions/ms-python.python-2025.6.1-linux-x64/python_files/deactivate/bash/envVars.txt
+ 1957  for f in $(grep '\.sv' Makefile | grep -v '#' | sed 's/\\//g' | tr -d ' '); do      if [ ! -f "$f" ]; then          echo "Missing: $f";     fi; done
+ 1958* (.venv) nitin@pop-os:~/cocotb_simulation/sim$ make
+rm -f results.xml
+"make" -f Makefile results.xml
+make[1]: Entering directory '/home/nitin/cocotb_simulation/sim'
+make[1]: *** No rule to make target '../ibex/examples/simple_system/rtl/ram_2p.sv', needed by 'sim_build/Vtop.mk'.  Stop.
+make[1]: Leaving directory '/home/nitin/cocotb_simulation/sim'
+make: *** [/home/nitin/cocotb_simulation/.venv/lib/python3.11/site-packages/cocotb/share/makefiles/Makefile.inc:40: sim] Error 2
+
+ 1959  for f in $(grep '\.sv' Makefile | grep -v '#' | sed 's/\\//g' | tr -d ' '); do      if [ ! -f "$f" ]; then          echo "Missing: $f";     fi; done
+ 1960  ls ../ibex/examples/simple_system/rtl/
+ 1961  grep -n "module" ../ibex/examples/simple_system/rtl/ibex_simple_system.sv
+ 1962  # Search for all SystemVerilog files in ibex folder
+ 1963  find ../ibex -name "*.sv" | grep -i "ram_2p"
+ 1964  # Search for specific files
+ 1965  find ../ibex -name "bus.sv"
+ 1966  find ../ibex -name "ram_2p.sv"
+ 1967  find ../ibex -name "simulator_ctrl.sv"
+ 1968  find ../ibex -name "timer.sv"
+ 1969  # Or use a single command to search for all needed files
+ 1970  find ../ibex -type f \( -name "bus.sv" -o -name "ram_2p.sv" -o -name "simulator_ctrl.sv" -o -name "timer.sv" \)
+ 1971  ls -l ../ibex/shared/rtl/
+ 1972  find ../ibex -type f -exec grep -l "module.*prim_ram_2p" {} \;
+ 1973  make clean
+ 1974  make
+ 1975  grep -n "module" ../ibex/examples/simple_system/rtl/ibex_simple_system.sv
+ 1976  history > ~/cocotb_simulation/sim/log_2025-05-29.txt
