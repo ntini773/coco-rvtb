@@ -1,2 +1,4 @@
 .env/
 sim/
+.venv/
+.vscode/
