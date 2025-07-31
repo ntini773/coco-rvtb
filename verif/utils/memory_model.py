@@ -2,10 +2,11 @@ import binascii
 from elftools.elf.elffile import ELFFile
 from typing import List
 from intelhex import IntelHex
+import math
 
 
 class MemoryModel:
-    def __init__(self):
+    def __init__(self,ram_base=0x80000000, ram_size=1 * 1024 * 1024):
         # Associative arrays 
         '''
         System Memory Map
@@ -16,12 +17,12 @@ class MemoryModel:
         0x30004	RISC-V timer mtimeh register
         0x30008	RISC-V timer mtimecmp register
         0x3000C	RISC-V timer mtimecmph register
-        0x80000000- 0x80100000	1 MB memory for instruction and data. Execution starts at 0x100080, exception handler base is 0x100000
+        0x80000000- 0x80100000	1 MB memory for instruction and data. Execution starts at 0x80000080, exception handler base is 0x80000000
         '''
         # Byte addressing
         self.memory={}
-        self.ram_base=0x80000000
-        self.ram_size=1 * 1024 * 1024  # 1MB
+        self.ram_base=ram_base
+        self.ram_size=ram_size
         self.ram_end = self.ram_base + self.ram_size - 1
 
         self.peripherals_registers= {
@@ -42,8 +43,8 @@ class MemoryModel:
             return self.peripherals_registers[addr]
         elif self.ram_base <= addr <= self.ram_end:
             # Check alignment for multi-byte access
-            if size > 1 and addr % size != 0:
-                raise ValueError(f"Unaligned {size}-byte access at address {addr:#x}")
+            # if size > 1 and addr % size != 0:
+            #     raise ValueError(f"Unaligned {size}-byte access at address {addr:#x}")
             
             value = 0
             for i in range(size):
@@ -166,8 +167,6 @@ class MemoryModel:
                 f.write(dump_content)
         
         return dump_content
-
-
 
 
 

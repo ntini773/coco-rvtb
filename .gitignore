@@ -1,2 +1,11 @@
-.venv/
+
 .vscode/
+
+# Virtual environments
+.venv/
+
+# Python artifacts
+**/__pycache__/
+*.pyc
+
+verif/utils/check_memory.txt
