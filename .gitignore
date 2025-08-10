@@ -9,3 +9,5 @@
 *.pyc
 
 verif/utils/check_memory.txt
+
+test/
