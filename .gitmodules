@@ -1,3 +1,9 @@
-[submodule "ibex"]
-	path = ibex
+[submodule "submodules/ibex"]
+	path = submodules/ibex
 	url = https://github.com/lowRISC/ibex.git
+[submodule "submodules/hammer"]
+	path = submodules/hammer
+	url = https://github.com/merledu/hammer.git
+[submodule "submodules/riscv-isa-sim"]
+	path = submodules/riscv-isa-sim
+	url = https://github.com/riscv-software-src/riscv-isa-sim.git
