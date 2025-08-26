@@ -11,3 +11,17 @@
 verif/utils/check_memory.txt
 
 test/
+
+submodules/spike-install
+
+verif/sim_build
+verif/dump.vcd
+verif/hammer.log
+verif/results.xml
+myenv/
+
+verif_copy/
+verif_updated/
+verif/*.log
+verif/*.vcd
+verif/sim_build/
