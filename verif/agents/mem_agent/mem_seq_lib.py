@@ -12,26 +12,14 @@ class mem_seq(uvm_sequence):
     async def body(self):
         self.mem= ConfigDB().get(None, "", "memory_model")
         self.sequencer = ConfigDB().get(None, "", "mem_sequencer")
-        # self.mem_req_item = mem_seq_item("mem_seq_item")
         while True:
             if not  ConfigDB().get(None,"","keep_running"):
                 return
             self.mem_req_item = await self.sequencer.addr_port.get()
-            # self.logger.info(f"Item processing ={self.mem_req_item}")
-            # print("Item processing:",self.mem_req_item)
             ir = self.mem_req_item.instr_req
             ia = self.mem_req_item.instr_addr
             dr = self.mem_req_item.data_req
             da = self.mem_req_item.data_addr
-            # print(f"Item processing: IR={ir}, IA={ia:#x}, DR={dr}, DA={da:#x}")
-
-            # print(dir(self.sequencer.addr_ph_port.analysis_export))
-            # print(dir(self.sequencer.addr_ph_port))
-            # assert False
-            # if not success:
-            #     raise ValueError("Failed to get memory sequence item")
-            # Instruction fetch
-            # print(f"{self.mem_req_item.instr_addr.integer:#x}")
             if self.mem_req_item.instr_req:
                 addr = self.mem_req_item.instr_addr
                 try:
@@ -74,12 +62,9 @@ class mem_seq(uvm_sequence):
                         self.mem_req_item.data_err=1
                         self.mem_req_item.data_rvalid=1
             await self.start_item(self.mem_req_item)
-            # print(f"AN ITEM sent at, {cocotb.utils.get_sim_time(units='ns')}, with addr = {self.mem_req_item.instr_addr:#x}")
             await self.finish_item(self.mem_req_item)
             if self.mem.read(0x80002000,4)==1:
-                # print(f"Detected a 1 at TO_HOST at time={get_sim_time(units='ns')}")
                 await Timer(5, units='ns')
-                # print(f"Simulation ending : Memory access at tohost address 0x80002000 at time ={get_sim_time(units='ns')}")
                 return
 
                 

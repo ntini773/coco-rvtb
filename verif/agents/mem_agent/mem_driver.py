@@ -38,8 +38,6 @@ class mem_driver(uvm_driver):
             await self.handle_reset()
             # Loop will restart tasks after reset is handled
 
-        # await self.handle_reset()
-
     async def reset_signals(self):
         # Instruction Mem
         self.mem_if.instr_rvalid_i.value = 0
@@ -80,12 +78,6 @@ class mem_driver(uvm_driver):
     
     async def send_grant(self):
         while True:
-            # if self.mem_if.rst.value == 0:
-            #     # In reset - clear grants
-            #     self.mem_if.data_gnt_i.value = 0
-            #     self.mem_if.instr_gnt_i.value = 0
-            #     # await ReadWrite()
-            #     await RisingEdge(self.mem_if.clk)
             self.mem_if.data_gnt_i.value = 0
             self.mem_if.instr_gnt_i.value = 0
 
@@ -95,16 +87,9 @@ class mem_driver(uvm_driver):
                         self.mem_if.data_gnt_i.value = 1
                     if self.mem_if.instr_req_o.value:
                         self.mem_if.instr_gnt_i.value = 1
-                    # self.logger.critical(f"Sending grant for addr={self.mem_if.instr_addr_o.value.integer:#x}, ir={self.mem_if.instr_req_o.value}, dr={self.mem_if.data_req_o.value} at {get_sim_time(units='ns')}")
-
-            # else:
-            #     self.mem_if.data_gnt_i.value = 0
-            #     self.mem_if.instr_gnt_i.value = 0
-            # self.logger.info(f"Data Request: {self.mem_if.data_req_o.value}, Instr Request: {self.mem_if.instr_req_o.value}")   
             await ReadWrite()
             await RisingEdge(self.mem_if.clk)
             await ReadWrite()
-            # await RisingEdge(self.mem_if.clk)
 
     async def get_and_drive(self):
         while self.mem_if.rst.value == 0:
@@ -136,12 +121,6 @@ class mem_driver(uvm_driver):
             self.mem_if.data_rdata_i.value = 0
             self.mem_if.data_rdata_intg_i.value = 0
             await ReadWrite()
-            # try:
-            #     item_received = self.rdata_queue.get_nowait()
-            # except:
-            #     item_received = None
-            #     # await RisingEdge(self.mem_if.clk)
-            #     # continue
             item_received=await self.rdata_queue.get()
 
             await RisingEdge(self.mem_if.clk)
@@ -151,12 +130,10 @@ class mem_driver(uvm_driver):
 
 
             if item_received is not None:
-                # self.logger.info(f"Item received: Addr={item_received.instr_addr:#x} , Data={item_received.instr_rdata:#x}")
                 if item_received.instr_req:
                     self.mem_if.instr_rvalid_i.value = item_received.instr_rvalid
                     self.mem_if.instr_rdata_i.value = item_received.instr_rdata
                     self.mem_if.instr_err_i.value = item_received.instr_err
-                    # self.logger.critical(f"Sending instruction read data of addr={item_received.instr_addr:#x}")
 
                 if item_received.data_req:
                     self.mem_if.data_rvalid_i.value = item_received.data_rvalid

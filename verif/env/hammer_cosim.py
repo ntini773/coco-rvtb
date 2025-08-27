@@ -136,7 +136,7 @@ def test_cosimulation():
     
     # Start co-simulation
     cosim = HammerCoSim(
-        "../ibex_load_instr_test_0.o",
+        "../elf_files/ibex_load_instr_test_0.o",
         memory_watch_addresses=watch_addresses,
         isa="RV32IMC",              # Custom ISA
         privilege_levels="msu",      # Custom privilege levels
@@ -166,12 +166,12 @@ def test_cosimulation():
                     if data["register_writes"]:
                         print("Register writes:")
                         for rw in data["register_writes"]:
-                            print(f"  x{rw['register']} = {rw['value_hex']}")
+                            print(f"{rw['register']} = {rw['value_hex']}")
                     
                     if data["memory_writes"]:
                         print("Memory writes:")
                         for mw in data["memory_writes"]:
-                            print(f"  [{mw['address_hex']}] = {mw['value_hex']}")
+                            print(f"[{mw['address_hex']}] = {mw['value_hex']}")
                 else:
                     print(f"Step failed: {step_result}")
                     

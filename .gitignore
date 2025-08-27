@@ -14,9 +14,6 @@ test/
 
 submodules/spike-install
 
-verif/sim_build
-verif/dump.vcd
-verif/hammer.log
 verif/results.xml
 myenv/
 

@@ -2,11 +2,9 @@ from pyuvm import *
 from pathlib import Path
 import sys
 sys.path.insert(0, str(Path("../agents/rvfi_agent").resolve()))
-# print(sys.path)
 from agents.rvfi_agent import rvfi_agent
 from agents.mem_agent.mem_agent import Mem_agent
 from utils.memory_model import MemoryModel
-# from verif.env.scoreboard_new import scoreboard   
 from .scoreboard import scoreboard
 
 class environment(uvm_env):
@@ -21,7 +19,6 @@ class environment(uvm_env):
 
         # Create scoreboard
         self.scoreboard = scoreboard.create("scoreboard", self)
-        # self.scoreboard.instantiate_hammer(cocotb.plusargs["ELF_PATH"])
 
         # Create Memory Instance and register in ConfigDB
         self.mem = MemoryModel()

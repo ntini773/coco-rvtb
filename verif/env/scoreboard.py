@@ -41,14 +41,6 @@ class scoreboard(uvm_scoreboard):
             0x80002000  # Your target memory location
         ]
         
-        # # Initialize co-simulation
-        # self.hammer_cosim = HammerCoSim(
-        #     self.elf_path,
-        #     memory_watch_addresses=self.memory_watch_addresses
-        # )
-        
-        # self.current_step = 1
-        # self.cosim_ready = False
     
     def log_message(self, level, message):
         """Log message to both CLI and file if enabled"""
@@ -68,31 +60,9 @@ class scoreboard(uvm_scoreboard):
             self.log_file.write(f"[{timestamp}] [{level.upper()}] {message}\n")
             self.log_file.flush()  # Ensure immediate write
     
-    # def start_of_simulation_phase(self):
-    #     """Initialize co-simulation"""
-    #     self.logger.info("Starting Hammer co-simulation...")
-
-    #     result = self.hammer_cosim.start_cosimulation()
-        
-    #     if result["success"]:
-    #         self.cosim_ready = True
-    #         self.logger.info("Hammer co-simulation ready and waiting!")
-            
-    #         # Query initial PC
-    #         pc_result = self.hammer_cosim.query_pc()
-    #         if pc_result["success"]:
-    #             self.logger.info(f"Initial PC: {pc_result['pc_hex']}")
-            
-    #     else:
-    #         self.logger.error(f"Co-simulation failed: {result['message']}")
-    #         raise RuntimeError("Hammer co-simulation initialization failed")
-    
     async def run_phase(self):
         """Main verification loop with co-simulation"""
         while True:
-            # if not self.cosim_ready:
-            #     self.logger.error("Co-simulation not ready")
-            #     return
             
             self.logger.info("Starting co-simulation verification...")
             
@@ -104,25 +74,18 @@ class scoreboard(uvm_scoreboard):
 
             await self.handle_reset()
 
-        
-        
-
     async def collect_rvfi_and_spike(self):
         while True:
             try:
                 # === WAIT FOR RVFI PACKET FROM DUT ===
-                # self.logger.info("Waiting for RVFI packet from FIFO...")
                 
                 # This blocks until FIFO has data
                 rvfi_packet = await self.rvfi_port.get()
                 
-                # self.logger.info(f"Received RVFI packet: {rvfi_packet}")
                 
                 # === NOW STEP HAMMER (synchronized!) ===
-                # self.logger.info(f"Stepping Hammer (step {self.current_step})...")
                 
                 step_result = self.hammer_cosim.step_instruction(0)
-                # print("HIII")    
                 
                 if step_result["success"]:
                     hammer_data = step_result["data"]
@@ -162,25 +125,7 @@ class scoreboard(uvm_scoreboard):
             rvfi.mem_wdata ANDed with rvfi.mem_wmask and hammer["memory_writes"]["value"]
         '''
         step_num = hammer_data["hart_id"]
-        # self.logger.info(f"═══════════ STEP {step_num} SIGNALS ═══════════")
         mismatch = False
-        # Print RVFI signals
-        # self.logger.info("🔵 RVFI SIGNALS:")
-
-        # If rvfi_packet has specific attributes, print them individually
-        # if hasattr(rvfi_packet, '__dict__'):
-        #     for attr, value in rvfi_packet.__dict__.items():
-        #         if not attr.startswith('_'):
-        #             self.logger.info(f"  rvfi_{attr}: {value}")
-        # self.logger.info(f"Order:{rvfi_packet.order}, PC:{rvfi_packet.pc_rdata:#x}, Insn Hex:{rvfi_packet.insn:#x}")
-        
-        # If it's a dict-like object
-        # elif hasattr(rvfi_packet, 'items'):
-        #     for key, value in rvfi_packet.items():
-        #         self.logger.info(f"  rvfi_{key}: {value}")
-        
-        # Print Hammer signals
-        # self.logger.info("🟡 HAMMER SIGNALS:")
 
         # Compare PC
         if hammer_data['pc'] != rvfi_packet.pc_rdata:
@@ -190,59 +135,23 @@ class scoreboard(uvm_scoreboard):
         if hammer_data['instruction_hex'] != rvfi_packet.insn:
             mismatch = True
         
-
-        # # If a mismatch is detected, handle error and prevent further comparison
-        # if mismatch:
-        #     self.logger.error("RVFI/Hammer mismatch detected! Entering error handling.")
-        #     # Optionally, log the last few packets for debugging
-        #     self.log_queue.put({
-        #     "step": step_num,
-        #     "rvfi": rvfi_packet,
-        #     "hammer": hammer_data
-        #     })
-        #     # Print the contents of the log queue
-        #     while not self.log_queue.empty():
-        #     entry = self.log_queue.get()
-        #     self.logger.error(f"Step {entry['step']} RVFI: {entry['rvfi']}, Hammer: {entry['hammer']}")
-        #     # Raise an exception or stop the test
-        #     raise RuntimeError("Co-simulation mismatch detected. Stopping verification.")
-        # self.logger.info(f"  PC: {hammer_data['pc_hex']} -> {hammer_data['pc_after_step_hex']}")
-        # self.logger.info(f"  Instruction: {hammer_data['instruction_string']}")
-        # self.logger.info(f"  Instruction Hex: {hammer_data['instruction_hex']:#x}")
-        
         # Register writes
-        # reg_writes = []
         reg_writes = {}
         if hammer_data["register_writes"]:
-            # self.logger.info("  Register writes:")
-            for rw in hammer_data["register_writes"]:
-                if rw['register'].startswith('x'):  # GPR Writes
-                    # reg_num = int(rw['register'][1:])
+            for rw in hammer_data["register_writes"]: 
+                if rw['register'].startswith('x'):  # GPR Writes eg:x30
                     reg_writes[rw['register']] = rw['value_hex']
                     if int(rw['register'][1:]) != rvfi_packet.rd_addr:
                         mismatch = True
                     if rw['value'] != rvfi_packet.rd_wdata:
                         mismatch = True
-                    # self.logger.info(f"  GPR Write: {rw['register']} = {rw['value_hex']}")
-                elif rw['register'].startswith('c'):  # CSR Writes
-                    # csr_num = int(rw['register'][1:])
+                elif rw['register'].startswith('c'):  # CSR Writes eg:c786
                     reg_writes[rw['register']] = rw['value_hex']
-                    # self.logger.info(f"  CSR Write: {rw['register']} = {rw['value_hex']}")
-                else:  # Other writes
-                    # self.logger.info(f"{rw['register']} = {rw['value_hex']}")
-                    # Need to check reg addr with rvfi
-                    pass
-
-            # self.logger.info(f"Rd:x{rvfi_packet.rd_addr} = {rvfi_packet.rd_wdata:#x}")
 
         # Memory reads
         mem_reads=[]
         if hammer_data["memory_reads"]:
-            # self.logger.info("  Memory reads:")
             for mr in hammer_data["memory_reads"]:
-                # self.logger.info(f"[{mr['address_hex']}] = {mr['value']} (size: {mr['size']})")
-                # self.logger.info(f"RVFI READ ADDR:{rvfi_packet.mem_addr:#x}")
-                # assert mr['address'] == rvfi_packet.mem_addr
                 mem_reads.append(mr['address_hex'])
                 if mr['address'] != rvfi_packet.mem_addr:
                     mismatch = True
@@ -250,9 +159,7 @@ class scoreboard(uvm_scoreboard):
         # Memory writes
         mem_writes = []
         if hammer_data["memory_writes"]:
-            # self.logger.info("  Memory writes:")
             for mw in hammer_data["memory_writes"]:
-                # self.logger.info(f"[{mw['address_hex']}] = {mw['value_hex']} (size: {mw['size']})")
                 if mw['address'] != rvfi_packet.mem_addr:
                     mismatch = True
                 if mw['value'] != self.apply_mask(rvfi_packet.mem_wdata, rvfi_packet.mem_wmask):
@@ -264,11 +171,7 @@ class scoreboard(uvm_scoreboard):
                     "value_hex": mw['value_hex'],
                     "size": mw['size']
                 })
-        # if self.current_step == 125:
-        #     mismatch = True
         if not mismatch:
-            # We need to print the actual instruction happened on Spike and print corresponding RVFI Signals compared and dump last queue.size instructions
-            # self.logger.info("═══════════════════════════════════════════════")
             log_parts = [
                 f"{rvfi_packet.pc_rdata:#x}",
                 f"{rvfi_packet.insn:#010x}",  # 0x-prefixed, zero-padded to 10 chars
@@ -276,11 +179,9 @@ class scoreboard(uvm_scoreboard):
                 f"{hammer_data['instruction_string']:<25}"
             ]
             # Add Register writes to log 
-            # self.logger.info(f"{list(reg_writes.items())}")
             reg_list=[]
             if reg_writes:
                 for reg, val in reg_writes.items():
-                    # log_parts.append(f"{reg} : {val}")
                     reg_list.append(f"{reg}:{val}")
                 log_parts.append(f"[{', '.join(reg_list):<13}]")
             # Add Memory reads to logs
@@ -291,7 +192,7 @@ class scoreboard(uvm_scoreboard):
                 for mw in mem_writes:
                     log_parts.append(f"MEMWrites: [{mw['value_hex']}] , A@[{mw['addr_hex']}] ")
             log_string = ", ".join(log_parts)
-            # self.logger.info(log_string)
+
             # Add to queue ONLY if no mismatch
             if self.log_queue.full():
                 self.log_queue.get()  # Remove oldest
@@ -310,7 +211,6 @@ class scoreboard(uvm_scoreboard):
                             self.log_file.flush()
 
         else:
-            # Log last  5 instructions from queue
             # Dump entire queue and log each entry
             self.log_message("error", f"LAST {self.log_queue.qsize()} INSTRUCTIONS:")
             while not self.log_queue.empty():
@@ -362,9 +262,7 @@ class scoreboard(uvm_scoreboard):
             ConfigDB().set(None,"*","keep_running",keep_running)
             
             
-            # Also raise TestFailure to ensure cocotb marks test as failed
             raise RuntimeError("RVFI/Hammer mismatch detected! Stopping verification.")
-        # self.logger.info("═══════════════════════════════════════════════")
         
         
         await Timer(1, 'ns')  # Small delay

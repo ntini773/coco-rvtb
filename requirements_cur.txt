@@ -1,6 +1,0 @@
-cocotb==1.9.2
-find_libpython==0.4.1
-intelhex==2.3.0
-pybind11==3.0.1
-pyelftools==0.32
-pyuvm==3.0.0

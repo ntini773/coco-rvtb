@@ -5,24 +5,18 @@ from pyuvm import *
 from pathlib import Path
 import sys
 sys.path.insert(0,str(Path("../../env").resolve()))
-# print(sys.path)
-
-# import rvfi_if
-
-# a= rvfi_if.Dummy()
 
 from .rvfi_seq_item import rvfi_seq_item
 
 class rvfi_monitor(uvm_monitor):
     def build_phase(self):
         # super().build_phase() doesn't exist because uvm_monitor doesn't have build_phase
-        # making a port to send collected items to scoreboard
+        # Make a port to send collected items to scoreboard
         self.item_collected_port = uvm_analysis_port("item_collected_port", self)
-        # get interface from ConfigDB , it raises error automatically if not found
+        # Get interface from ConfigDB , it raises error automatically if not found
         self.rvfi = ConfigDB().get(self,"","rvfi_if")
 
     async def run_phase(self):
-        cnt=0
         while True:
 
             while self.rvfi.valid.value == 0:
@@ -55,6 +49,5 @@ class rvfi_monitor(uvm_monitor):
             item.rd_wdata = self.rvfi.rd_wdata.value.integer
             
             self.item_collected_port.write(item)
-            # self.logger.info(f"Captured RVFI signals")
             await RisingEdge(self.rvfi.clk)
 
