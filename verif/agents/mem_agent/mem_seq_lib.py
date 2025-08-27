@@ -14,6 +14,8 @@ class mem_seq(uvm_sequence):
         self.sequencer = ConfigDB().get(None, "", "mem_sequencer")
         # self.mem_req_item = mem_seq_item("mem_seq_item")
         while True:
+            if not  ConfigDB().get(None,"","keep_running"):
+                return
             self.mem_req_item = await self.sequencer.addr_port.get()
             # self.logger.info(f"Item processing ={self.mem_req_item}")
             # print("Item processing:",self.mem_req_item)
@@ -75,8 +77,9 @@ class mem_seq(uvm_sequence):
             # print(f"AN ITEM sent at, {cocotb.utils.get_sim_time(units='ns')}, with addr = {self.mem_req_item.instr_addr:#x}")
             await self.finish_item(self.mem_req_item)
             if self.mem.read(0x80002000,4)==1:
-                print(f"Detected a 1 at to host at time={get_sim_time(units='ns')}")
+                # print(f"Detected a 1 at TO_HOST at time={get_sim_time(units='ns')}")
                 await Timer(5, units='ns')
-                print(f"Simulation ending : Memory access at tohost address 0x80002000 at time ={get_sim_time(units='ns')}")
+                # print(f"Simulation ending : Memory access at tohost address 0x80002000 at time ={get_sim_time(units='ns')}")
                 return
+
                 

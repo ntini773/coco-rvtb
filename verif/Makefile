@@ -1,6 +1,6 @@
 TOPLEVEL_LANG = verilog
 TOPLEVEL = ibex_top_tracing
-MODULE = top
+MODULE = tb_top
 SIM = verilator
 
 # Define Ibex base path for cleaner references
@@ -77,11 +77,22 @@ ifeq ($(MAKECMDGOALS),)
 ifndef ELF_PATH
 $(error You must specify ELF_PATH, e.g. 'make ELF_PATH=./my_test.o')
 endif
+ifdef LOG_PATH
+ifneq ($(suffix $(LOG_PATH)), .log)
+$(error LOG_PATH must end with .log)
+endif
+endif
 endif
 export ELF_PATH
+export LOG_PATH
+
 
 # # PLUSARGS ?= +ELF_PATH=./ibex_load_instr_test_0.o
+ifdef LOG_PATH
+PLUSARGS ?= +ELF_PATH=$(ELF_PATH) +LOG_PATH=$(LOG_PATH)
+else
 PLUSARGS ?= +ELF_PATH=$(ELF_PATH)
+endif
 
 EXTRA_ARGS += $(VERILATOR_ARGS)
 SIM_ARGS = $(EXTRA_ARGS) $(PLUSARGS)
