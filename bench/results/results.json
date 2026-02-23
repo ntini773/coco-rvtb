@@ -1,0 +1,532 @@
+{
+  "generated": "2026-02-23T21:43:50.905399",
+  "total_sec": 246.2270023100009,
+  "errors": {},
+  "benchmarks": {
+    "bench1": [
+      {
+        "method": "hammer_python",
+        "elf": "ibex_arithmetic_basic_test_0.o",
+        "window_sec": 3.0,
+        "steps": 1463898,
+        "wall_sec_mean": 3.000001969000247,
+        "insns_per_sec": 487965.79084285686,
+        "stdev_insns": 32952.4485332021
+      },
+      {
+        "method": "spike_cli",
+        "elf": "ibex_arithmetic_basic_test_0.o",
+        "window_sec": 3.0,
+        "steps": 1068198,
+        "wall_sec_mean": 3.314905535666791,
+        "insns_per_sec": 322240.85679266055,
+        "stdev_insns": 11236.917904834938
+      },
+      {
+        "method": "hammer_python",
+        "elf": "ibex_arithmetic_basic_test_1.o",
+        "window_sec": 3.0,
+        "steps": 1468248,
+        "wall_sec_mean": 3.0000059236657157,
+        "insns_per_sec": 489415.255844765,
+        "stdev_insns": 9617.00786800829
+      },
+      {
+        "method": "spike_cli",
+        "elf": "ibex_arithmetic_basic_test_1.o",
+        "window_sec": 3.0,
+        "steps": 1071854,
+        "wall_sec_mean": 3.315206502666115,
+        "insns_per_sec": 323314.6007057699,
+        "stdev_insns": 20832.356595770278
+      },
+      {
+        "method": "hammer_python",
+        "elf": "ibex_load_instr_test_0.o",
+        "window_sec": 3.0,
+        "steps": 1470962,
+        "wall_sec_mean": 3.000002674666272,
+        "insns_per_sec": 490320.34063001856,
+        "stdev_insns": 12910.788989575089
+      },
+      {
+        "method": "spike_cli",
+        "elf": "ibex_load_instr_test_0.o",
+        "window_sec": 3.0,
+        "steps": 1053825,
+        "wall_sec_mean": 3.331563118333482,
+        "insns_per_sec": 316315.58397743304,
+        "stdev_insns": 33292.33192994046
+      },
+      {
+        "method": "hammer_python",
+        "elf": "ibex_load_instr_test_1.o",
+        "window_sec": 3.0,
+        "steps": 1484287,
+        "wall_sec_mean": 3.000006161333052,
+        "insns_per_sec": 494761.428314464,
+        "stdev_insns": 17480.571682108493
+      },
+      {
+        "method": "spike_cli",
+        "elf": "ibex_load_instr_test_1.o",
+        "window_sec": 3.0,
+        "steps": 1074451,
+        "wall_sec_mean": 3.3150094280002427,
+        "insns_per_sec": 324117.127468168,
+        "stdev_insns": 24121.379756003455
+      },
+      {
+        "method": "hammer_python",
+        "elf": "ibex_load_instr_test_3.o",
+        "window_sec": 3.0,
+        "steps": 1458169,
+        "wall_sec_mean": 3.00000139333315,
+        "insns_per_sec": 486056.21869836363,
+        "stdev_insns": 12957.307796503614
+      },
+      {
+        "method": "spike_cli",
+        "elf": "ibex_load_instr_test_3.o",
+        "window_sec": 3.0,
+        "steps": 1028132,
+        "wall_sec_mean": 3.2815591339998114,
+        "insns_per_sec": 313306.1525584947,
+        "stdev_insns": 8241.903744483634
+      },
+      {
+        "method": "hammer_python",
+        "elf": "ibex_rand_instr_test_0.o",
+        "window_sec": 3.0,
+        "steps": 1471438,
+        "wall_sec_mean": 3.000001058999866,
+        "insns_per_sec": 490479.1601942117,
+        "stdev_insns": 7731.167893662639
+      },
+      {
+        "method": "spike_cli",
+        "elf": "ibex_rand_instr_test_0.o",
+        "window_sec": 3.0,
+        "steps": 1015743,
+        "wall_sec_mean": 3.3146543496665495,
+        "insns_per_sec": 306440.19743280805,
+        "stdev_insns": 29737.319471218878
+      },
+      {
+        "method": "hammer_python",
+        "elf": "ibex_rand_instr_test_1.o",
+        "window_sec": 3.0,
+        "steps": 1470625,
+        "wall_sec_mean": 3.000001020000127,
+        "insns_per_sec": 490208.3888846826,
+        "stdev_insns": 14637.940986810041
+      },
+      {
+        "method": "spike_cli",
+        "elf": "ibex_rand_instr_test_1.o",
+        "window_sec": 3.0,
+        "steps": 1051644,
+        "wall_sec_mean": 3.3479698599997696,
+        "insns_per_sec": 314114.1380128013,
+        "stdev_insns": 17813.428904434244
+      }
+    ],
+    "bench2": [
+      {
+        "method": "direct",
+        "elf": "ibex_arithmetic_basic_test_0.o",
+        "steps": 1500,
+        "mean_latency_us": 2.516181316120007,
+        "stdev_latency_us": 3.8148314453039815,
+        "throughput_steps_sec": 397427.63909479167
+      },
+      {
+        "method": "cosim_subprocess",
+        "elf": "ibex_arithmetic_basic_test_0.o",
+        "steps": 1500,
+        "mean_latency_us": 135.79917798900473,
+        "stdev_latency_us": 32.670401123596186,
+        "throughput_steps_sec": 7363.814824276529
+      },
+      {
+        "method": "direct",
+        "elf": "ibex_arithmetic_basic_test_1.o",
+        "steps": 1500,
+        "mean_latency_us": 4.2387759931443725,
+        "stdev_latency_us": 3.7950606156150624,
+        "throughput_steps_sec": 235917.16137332105
+      },
+      {
+        "method": "cosim_subprocess",
+        "elf": "ibex_arithmetic_basic_test_1.o",
+        "steps": 1500,
+        "mean_latency_us": 133.1274619915348,
+        "stdev_latency_us": 32.03514343542535,
+        "throughput_steps_sec": 7511.5981709588
+      },
+      {
+        "method": "direct",
+        "elf": "ibex_load_instr_test_0.o",
+        "steps": 1500,
+        "mean_latency_us": 4.387728005288713,
+        "stdev_latency_us": 3.651746798025187,
+        "throughput_steps_sec": 227908.3842012673
+      },
+      {
+        "method": "cosim_subprocess",
+        "elf": "ibex_load_instr_test_0.o",
+        "steps": 1500,
+        "mean_latency_us": 139.09506136648514,
+        "stdev_latency_us": 75.90146829090129,
+        "throughput_steps_sec": 7189.327860931153
+      },
+      {
+        "method": "direct",
+        "elf": "ibex_load_instr_test_1.o",
+        "steps": 1500,
+        "mean_latency_us": 4.523285989610789,
+        "stdev_latency_us": 4.954943363082468,
+        "throughput_steps_sec": 221078.216654182
+      },
+      {
+        "method": "cosim_subprocess",
+        "elf": "ibex_load_instr_test_1.o",
+        "steps": 1500,
+        "mean_latency_us": 128.60803870232,
+        "stdev_latency_us": 27.668386215155493,
+        "throughput_steps_sec": 7775.563721289847
+      },
+      {
+        "method": "direct",
+        "elf": "ibex_load_instr_test_3.o",
+        "steps": 1500,
+        "mean_latency_us": 3.1697679902814953,
+        "stdev_latency_us": 3.404241389553762,
+        "throughput_steps_sec": 315480.5030103146
+      },
+      {
+        "method": "cosim_subprocess",
+        "elf": "ibex_load_instr_test_3.o",
+        "steps": 1500,
+        "mean_latency_us": 121.944974634971,
+        "stdev_latency_us": 22.608635515729244,
+        "throughput_steps_sec": 8200.419927048171
+      },
+      {
+        "method": "direct",
+        "elf": "ibex_rand_instr_test_0.o",
+        "steps": 1500,
+        "mean_latency_us": 4.494601341624123,
+        "stdev_latency_us": 3.725337302372156,
+        "throughput_steps_sec": 222489.14286103297
+      },
+      {
+        "method": "cosim_subprocess",
+        "elf": "ibex_rand_instr_test_0.o",
+        "steps": 1500,
+        "mean_latency_us": 129.3568686827105,
+        "stdev_latency_us": 23.925120250931382,
+        "throughput_steps_sec": 7730.5520007045225
+      },
+      {
+        "method": "direct",
+        "elf": "ibex_rand_instr_test_1.o",
+        "steps": 1500,
+        "mean_latency_us": 4.528228662820766,
+        "stdev_latency_us": 3.453693102401092,
+        "throughput_steps_sec": 220836.90433094668
+      },
+      {
+        "method": "cosim_subprocess",
+        "elf": "ibex_rand_instr_test_1.o",
+        "steps": 1500,
+        "mean_latency_us": 124.80920334443604,
+        "stdev_latency_us": 24.821266658681672,
+        "throughput_steps_sec": 8012.2296529711775
+      }
+    ],
+    "bench3": [
+      {
+        "mode": "serial",
+        "workers": 1,
+        "wall_sec": 0.04383989699999802,
+        "total_steps": 1559,
+        "aggregate_insns_per_sec": 35561.2149362502,
+        "per_elf": [
+          {
+            "elf": "ibex_arithmetic_basic_test_0.o",
+            "steps": 215,
+            "elapsed_sec": 0.0012202970010548597,
+            "insns_per_sec": 176186.6167122822
+          },
+          {
+            "elf": "ibex_arithmetic_basic_test_1.o",
+            "steps": 155,
+            "elapsed_sec": 0.0009032180005306145,
+            "insns_per_sec": 171608.62594516715
+          },
+          {
+            "elf": "ibex_load_instr_test_0.o",
+            "steps": 195,
+            "elapsed_sec": 0.0013541949992941227,
+            "insns_per_sec": 143996.98721502014
+          },
+          {
+            "elf": "ibex_load_instr_test_1.o",
+            "steps": 210,
+            "elapsed_sec": 0.0015181529997789767,
+            "insns_per_sec": 138325.97902225485
+          },
+          {
+            "elf": "ibex_load_instr_test_3.o",
+            "steps": 252,
+            "elapsed_sec": 0.0013389880004979204,
+            "insns_per_sec": 188201.83594348154
+          },
+          {
+            "elf": "ibex_rand_instr_test_0.o",
+            "steps": 216,
+            "elapsed_sec": 0.0012966529993718723,
+            "insns_per_sec": 166582.73270075745
+          },
+          {
+            "elf": "ibex_rand_instr_test_1.o",
+            "steps": 316,
+            "elapsed_sec": 0.0016729090002627345,
+            "insns_per_sec": 188892.52191862883
+          }
+        ]
+      },
+      {
+        "mode": "parallel",
+        "workers": 2,
+        "wall_sec": 0.04201020700020308,
+        "total_steps": 1559,
+        "aggregate_insns_per_sec": 37110.02899824949,
+        "per_elf": [
+          {
+            "elf": "ibex_arithmetic_basic_test_0.o",
+            "steps": 215,
+            "elapsed_sec": 0.00210112099921389,
+            "insns_per_sec": 102326.3296499534
+          },
+          {
+            "elf": "ibex_arithmetic_basic_test_1.o",
+            "steps": 155,
+            "elapsed_sec": 0.0010433129991724854,
+            "insns_per_sec": 148565.19579736845
+          },
+          {
+            "elf": "ibex_load_instr_test_0.o",
+            "steps": 195,
+            "elapsed_sec": 0.0013034059993515257,
+            "insns_per_sec": 149608.02704377373
+          },
+          {
+            "elf": "ibex_load_instr_test_1.o",
+            "steps": 210,
+            "elapsed_sec": 0.0021173280001676176,
+            "insns_per_sec": 99181.61002139273
+          },
+          {
+            "elf": "ibex_load_instr_test_3.o",
+            "steps": 252,
+            "elapsed_sec": 0.0018699609991017496,
+            "insns_per_sec": 134762.16890141033
+          },
+          {
+            "elf": "ibex_rand_instr_test_0.o",
+            "steps": 216,
+            "elapsed_sec": 0.0016729950002627447,
+            "insns_per_sec": 129109.7701822642
+          },
+          {
+            "elf": "ibex_rand_instr_test_1.o",
+            "steps": 316,
+            "elapsed_sec": 0.0018442179989506258,
+            "insns_per_sec": 171346.33767797865
+          }
+        ]
+      },
+      {
+        "mode": "parallel",
+        "workers": 4,
+        "wall_sec": 0.0388894989991968,
+        "total_steps": 1559,
+        "aggregate_insns_per_sec": 40087.94250684995,
+        "per_elf": [
+          {
+            "elf": "ibex_load_instr_test_0.o",
+            "steps": 195,
+            "elapsed_sec": 0.0017248770000151126,
+            "insns_per_sec": 113051.53932616152
+          },
+          {
+            "elf": "ibex_arithmetic_basic_test_1.o",
+            "steps": 155,
+            "elapsed_sec": 0.0036778800003958168,
+            "insns_per_sec": 42143.843731529785
+          },
+          {
+            "elf": "ibex_arithmetic_basic_test_0.o",
+            "steps": 215,
+            "elapsed_sec": 0.0030260680014180252,
+            "insns_per_sec": 71049.29562033976
+          },
+          {
+            "elf": "ibex_load_instr_test_1.o",
+            "steps": 210,
+            "elapsed_sec": 0.00472328199975891,
+            "insns_per_sec": 44460.61023049629
+          },
+          {
+            "elf": "ibex_load_instr_test_3.o",
+            "steps": 252,
+            "elapsed_sec": 0.0025861430003715213,
+            "insns_per_sec": 97442.4074630823
+          },
+          {
+            "elf": "ibex_rand_instr_test_0.o",
+            "steps": 216,
+            "elapsed_sec": 0.0012044639988744166,
+            "insns_per_sec": 179332.88184773817
+          },
+          {
+            "elf": "ibex_rand_instr_test_1.o",
+            "steps": 316,
+            "elapsed_sec": 0.002188399999795365,
+            "insns_per_sec": 144397.7335174323
+          }
+        ]
+      }
+    ],
+    "bench4": [
+      {
+        "method": "python_memory_model",
+        "elf": "ibex_arithmetic_basic_test_0.o",
+        "file_size_bytes": 55020,
+        "mean_ms": 8.126895400164358,
+        "stdev_ms": 1.2445968818984472,
+        "throughput_mbs": 6.770112975600409,
+        "segments": 2
+      },
+      {
+        "method": "hammer_cpp_loader",
+        "elf": "ibex_arithmetic_basic_test_0.o",
+        "file_size_bytes": 55020,
+        "mean_ms": 4.447956100193551,
+        "stdev_ms": 0.2979670342082504,
+        "throughput_mbs": 12.36972640031358,
+        "segments": 2
+      },
+      {
+        "method": "python_memory_model",
+        "elf": "ibex_arithmetic_basic_test_1.o",
+        "file_size_bytes": 55020,
+        "mean_ms": 7.558569999855536,
+        "stdev_ms": 0.9025338065662153,
+        "throughput_mbs": 7.2791546550540085,
+        "segments": 2
+      },
+      {
+        "method": "hammer_cpp_loader",
+        "elf": "ibex_arithmetic_basic_test_1.o",
+        "file_size_bytes": 55020,
+        "mean_ms": 4.823595800007752,
+        "stdev_ms": 0.21935900533180094,
+        "throughput_mbs": 11.406428374432116,
+        "segments": 2
+      },
+      {
+        "method": "python_memory_model",
+        "elf": "ibex_load_instr_test_0.o",
+        "file_size_bytes": 71756,
+        "mean_ms": 10.441267900205276,
+        "stdev_ms": 0.7899617251575964,
+        "throughput_mbs": 6.872345455151982,
+        "segments": 2
+      },
+      {
+        "method": "hammer_cpp_loader",
+        "elf": "ibex_load_instr_test_0.o",
+        "file_size_bytes": 71756,
+        "mean_ms": 4.9946375998843,
+        "stdev_ms": 0.3048532562944915,
+        "throughput_mbs": 14.366607899973006,
+        "segments": 2
+      },
+      {
+        "method": "python_memory_model",
+        "elf": "ibex_load_instr_test_1.o",
+        "file_size_bytes": 71756,
+        "mean_ms": 10.112055500576389,
+        "stdev_ms": 0.9653846135956774,
+        "throughput_mbs": 7.096084470255319,
+        "segments": 2
+      },
+      {
+        "method": "hammer_cpp_loader",
+        "elf": "ibex_load_instr_test_1.o",
+        "file_size_bytes": 71756,
+        "mean_ms": 4.900155600262224,
+        "stdev_ms": 0.2978473334724661,
+        "throughput_mbs": 14.64361662232932,
+        "segments": 2
+      },
+      {
+        "method": "python_memory_model",
+        "elf": "ibex_load_instr_test_3.o",
+        "file_size_bytes": 71756,
+        "mean_ms": 9.859509399757371,
+        "stdev_ms": 0.8924678392481031,
+        "throughput_mbs": 7.277846908058712,
+        "segments": 2
+      },
+      {
+        "method": "hammer_cpp_loader",
+        "elf": "ibex_load_instr_test_3.o",
+        "file_size_bytes": 71756,
+        "mean_ms": 4.728108700510347,
+        "stdev_ms": 0.20627484975339566,
+        "throughput_mbs": 15.17647003171791,
+        "segments": 2
+      },
+      {
+        "method": "python_memory_model",
+        "elf": "ibex_rand_instr_test_0.o",
+        "file_size_bytes": 71780,
+        "mean_ms": 9.787913800028036,
+        "stdev_ms": 0.8321552134310071,
+        "throughput_mbs": 7.3335341387859785,
+        "segments": 2
+      },
+      {
+        "method": "hammer_cpp_loader",
+        "elf": "ibex_rand_instr_test_0.o",
+        "file_size_bytes": 71780,
+        "mean_ms": 5.262989900438697,
+        "stdev_ms": 0.4404112480532962,
+        "throughput_mbs": 13.6386353304643,
+        "segments": 2
+      },
+      {
+        "method": "python_memory_model",
+        "elf": "ibex_rand_instr_test_1.o",
+        "file_size_bytes": 71780,
+        "mean_ms": 10.175888699814095,
+        "stdev_ms": 0.9897736119042404,
+        "throughput_mbs": 7.0539293537390355,
+        "segments": 2
+      },
+      {
+        "method": "hammer_cpp_loader",
+        "elf": "ibex_rand_instr_test_1.o",
+        "file_size_bytes": 71780,
+        "mean_ms": 5.00268390023848,
+        "stdev_ms": 0.31426049653092225,
+        "throughput_mbs": 14.348298119850869,
+        "segments": 2
+      }
+    ]
+  }
+}
