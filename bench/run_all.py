@@ -174,6 +174,40 @@ def build_report(all_data: dict, run_time_sec: float) -> str:
         A("_Benchmark 4 did not produce results._\n")
 
     A("---\n")
+
+    # ── Bench 5 ────────────────────────────────────────────────────────────
+    A("## 5 · JSON Subprocess vs multiprocessing.Queue Bridge\n")
+    A("> Validates correctness and quantifies IPC latency reduction of the new MP bridge.\n")
+    b5 = all_data.get("bench5", [])
+    if b5:
+        direct_r = [r for r in b5 if r.get("method") == "direct"]
+        json_r   = [r for r in b5 if r.get("method") == "cosim_json"]
+        mp_r     = [r for r in b5 if r.get("method") == "cosim_mp"]
+
+        A("| ELF | Method | Mean lat (µs) | Stdev (µs) | Steps/sec |")
+        A("|-----|--------|--------------|------------|-----------|")
+        for r in b5:
+            A(f"| `{r['elf']}` | {r['method']} | {r['mean_latency_us']:.2f} | "
+              f"{r['stdev_latency_us']:.2f} | {r['throughput_steps_sec']:,.0f} |")
+
+        if direct_r and json_r and mp_r:
+            avg_d   = statistics.mean(r["mean_latency_us"] for r in direct_r)
+            avg_j   = statistics.mean(r["mean_latency_us"] for r in json_r)
+            avg_m   = statistics.mean(r["mean_latency_us"] for r in mp_r)
+            saved   = avg_j - avg_m
+            pct_imp = saved / avg_j * 100 if avg_j > 0 else 0
+            A(f"\n**Avg direct latency:** {avg_d:.2f} µs  ")
+            A(f"**Avg JSON-pipe latency:** {avg_j:.2f} µs  ")
+            A(f"**Avg MP-queue latency:** {avg_m:.2f} µs  ")
+            A(f"**MP vs JSON improvement:** {pct_imp:.1f}% faster ({saved:.1f} µs/step saved)  ")
+            A(f"**Takeaway:** Replacing JSON text pipes with binary pickle queues reduces "
+              f"per-step IPC overhead.  Both approaches offer identical C++ signal isolation "
+              f"(separate OS process).  The MP bridge additionally eliminates stdout "
+              f"pollution risk.\n")
+    else:
+        A("_Benchmark 5 did not produce results._\n")
+
+    A("---\n")
     A("## Key Takeaways\n")
     A("1. **Hammer Python API** gives fine-grained per-instruction observability "
       "that Spike CLI alone cannot provide (register writes, memory reads/writes, CSR values).\n")
@@ -185,6 +219,9 @@ def build_report(all_data: dict, run_time_sec: float) -> str:
     A("4. **C++ ELF loading** (Hammer) is substantially faster than Python's pyelftools, "
       "but Python's `MemoryModel` is the right choice for the bus-functional model "
       "inside the cocotb testbench.\n")
+    A("5. **multiprocessing.Queue bridge** (`HammerMPCoSim`) retains all signal-isolation "
+      "guarantees of the subprocess approach while removing JSON encode/decode overhead "
+      "and eliminating any risk of stdout-channel corruption.\n")
 
     return "\n".join(lines)
 
@@ -221,10 +258,11 @@ def main():
     errors   = {}
 
     benchmarks = [
-        ("bench1", "01_spike_vs_hammer",    "Benchmark 1: Spike CLI vs Hammer Python API"),
-        ("bench2", "02_direct_vs_subprocess","Benchmark 2: Direct Import vs CoSim Subprocess"),
-        ("bench3", "03_serial_vs_parallel",  "Benchmark 3: Serial vs Parallel ELF Processing"),
-        ("bench4", "04_elf_load_bench",      "Benchmark 4: ELF Load Performance"),
+        ("bench1", "01_spike_vs_hammer",       "Benchmark 1: Spike CLI vs Hammer Python API"),
+        ("bench2", "02_direct_vs_subprocess",   "Benchmark 2: Direct Import vs CoSim Subprocess"),
+        ("bench3", "03_serial_vs_parallel",     "Benchmark 3: Serial vs Parallel ELF Processing"),
+        ("bench4", "04_elf_load_bench",         "Benchmark 4: ELF Load Performance"),
+        ("bench5", "05_mp_vs_json_subprocess",  "Benchmark 5: JSON Subprocess vs MP-Queue Bridge"),
     ]
 
     for key, module, label in benchmarks:
